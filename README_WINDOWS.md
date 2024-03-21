@@ -9,7 +9,7 @@ See https://learn.microsoft.com/en-us/windows/win32/winsock/tcp-ip-raw-sockets-2
 See https://github.com/golang/go/issues/6786    
     
 Any errors arising from this issue will manifest as a problem with the bind():   
-> PS E:\dev\golang\learn\rawaf> go run .\rawaf.go    
+> PS E:\dev\golang\rawaf> go run .\rawaf.go    
 >     
 >> Remote target: 45.33.32.156    
 >>> TCP Header, pre check:    
