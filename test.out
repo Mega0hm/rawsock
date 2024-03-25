@@ -1,0 +1,46 @@
+mongoose@thoughtcrime:~/workbench/dev/golang/rawsock$ date && go version && uname -a && go test
+Mon Mar 25 11:59:46 AM CDT 2024
+go version go1.20.3 linux/amd64
+Linux thoughtcrime 6.5.0-26-generic #26~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue Mar 12 10:22:43 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+
+Testing: (*TCPHeadr).Misconfigure()
+Args: 80, SYN, 0x0000faf0, []byte{0x02, 0x04, 0x05, 0xb4, 0x01, 0x03, 0x03, 0x08, 0x01, 0x01, 0x04, 0x02}
+
+(*TCPHeadr).Misconfigure(): PASS!
+========================================
+
+Testing: (*TCPHeadr).Marshal()
+        TCPHeadr reference blob:
+                [[0 1 10 11 100 101 110 111 1000 1001 1010 1011 1100 1101 1110 1111 10000 10001 10010 10011 10100 10101 10110 10111]]
+        TCPHeadr struct:
+                [{1 1000000011 100000001010000011000000111 1000000010010000101000001011 1100 1101 111000001111 1000000010001 1001000010011 [10100 10101] [10110 10111]}]
+        TCPHeadr, marshalled:
+                [[0 1 10 11 100 101 110 111 1000 1001 1010 1011 1100 1101 1110 1111 10000 10001 10010 10011 10100 10101 10110 10111]]
+        Netblob[0]: 0 -- BYTEVAL: 0
+        Netblob[1]: 1 -- BYTEVAL: 1
+        Netblob[2]: 2 -- BYTEVAL: 2
+        Netblob[3]: 3 -- BYTEVAL: 3
+        Netblob[4]: 4 -- BYTEVAL: 4
+        Netblob[5]: 5 -- BYTEVAL: 5
+        Netblob[6]: 6 -- BYTEVAL: 6
+        Netblob[7]: 7 -- BYTEVAL: 7
+        Netblob[8]: 8 -- BYTEVAL: 8
+        Netblob[9]: 9 -- BYTEVAL: 9
+        Netblob[10]: 10 -- BYTEVAL: 10
+        Netblob[11]: 11 -- BYTEVAL: 11
+        Netblob[12]: 12 -- BYTEVAL: 12
+        Netblob[13]: 13 -- BYTEVAL: 13
+        Netblob[14]: 14 -- BYTEVAL: 14
+        Netblob[15]: 15 -- BYTEVAL: 15
+        Netblob[16]: 16 -- BYTEVAL: 16
+        Netblob[17]: 17 -- BYTEVAL: 17
+        Netblob[18]: 18 -- BYTEVAL: 18
+        Netblob[19]: 19 -- BYTEVAL: 19
+        Netblob[20]: 20 -- BYTEVAL: 20
+        Netblob[21]: 21 -- BYTEVAL: 21
+        Netblob[22]: 22 -- BYTEVAL: 22
+        Netblob[23]: 23 -- BYTEVAL: 23
+
+(*TCPHeadr).Marshal(): PASS!
+========================================PASS
+ok      github.com/Mega0hm/rawsock      0.002s

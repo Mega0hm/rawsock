@@ -1,5 +1,4 @@
 package rawsock
-
 /******************************************************************************
 Rawsock
 
@@ -17,11 +16,7 @@ License: GPL v3
 import (
 	"bytes"
 	"encoding/binary"
-	"fmt"
 	"math/rand"
-	"net"
-	"strconv"
-	"strings"
 	"time"
 )
 
@@ -140,35 +135,4 @@ func (th *TCPHeadr) Marshal() []byte {
 	binary.Write(bufr, binary.BigEndian, th.data)
 
 	return bufr.Bytes()
-}
-
-// Things on the 'net. Targets, bystanders, our stuff, everything. This is how we can describe them
-// Made to replace "NetThang".
-type NetThang struct {
-	Addr   string           // Unevaluated names or IPs
-	Hostn  string           // Hostname in "wah.blah.com" format. Can be just a domain name if DNS CNAME record is defined.
-	Domain string           // Domains in "blah.com" format
-	IP     net.IP           // []byte Using std library defs, no sense reinventing any of this
-	Mask   net.IPMask       // []byte
-	Port   uint16           // TCP or UDP portnumber
-	Mac    net.HardwareAddr // layer 2; local net
-}
-
-// (*NetThang).Network() and (*NetThang).String() implement the net.Addr interface, used in PacketConn.WriteTo()
-func (ts *NetThang) Network() string {
-	return "ip4:tcp"
-}
-
-// (*NetThang).Network() and (*NetThang).String() implement the net.Addr interface, used in PacketConn.WriteTo()
-func (ts *NetThang) String() string {
-	return fmt.Sprint(ts.IP.String(), ":", strconv.Itoa(int(ts.Port)))
-}
-
-// Top-level domain, no dots, eg: "com", "edu", "org", etc.
-func (ts *NetThang) TLD() string {
-	if ts.Hostn == "" {
-		return ""
-	}
-	t := strings.Split(ts.Hostn, ".")
-	return t[len(t)-1]
 }

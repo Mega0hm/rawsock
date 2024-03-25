@@ -14,15 +14,15 @@ func TestMisconfigureTCP(t *testing.T) {
 	tH.MisconfigureTCP(80, SYN, 0x0000faf0, opts) // tcp port 80 / SYN scan / oooOh xFAFO LOL (0xfaf0 window size) / MSS value: 1460, window scaling bitshift: 8, SACK permitted
 	fmt.Print("\nTesting: (*TCPHeadr).Misconfigure()\nArgs: 80, SYN, 0x0000faf0, []byte{0x02, 0x04, 0x05, 0xb4, 0x01, 0x03, 0x03, 0x08, 0x01, 0x01, 0x04, 0x02}")
 	if tH.dstP != 80 {
-		t.Fatalf("\n\t\n(*TCPHeadr).Misconfigure() :FAIL: DST Port = %q, want: %v\n========================================", tH.dstP, 80)
+		t.Errorf("\n\t\n(*TCPHeadr).Misconfigure() :FAIL: DST Port = %q, want: %v\n========================================", tH.dstP, 80)
 	} else if tH.flags != SYN {
-		t.Fatalf("\n\t(*TCPHeadr).Misconfigure() :FAIL: Flags set = %q, want: %v\n========================================", tH.flags, SYN)
+		t.Errorf("\n\t(*TCPHeadr).Misconfigure() :FAIL: Flags set = %q, want: %v\n========================================", tH.flags, SYN)
 	} else if tH.winSz != 0x0000faf0 {
-		t.Fatalf("\n\t(*TCPHeadr).Misconfigure() :FAIL: Window size set = %q, want: %v\n========================================", tH.winSz, 0x0000faf0)
+		t.Errorf("\n\t(*TCPHeadr).Misconfigure() :FAIL: Window size set = %q, want: %v\n========================================", tH.winSz, 0x0000faf0)
 	}
 	for i := 0; i < len(tH.opts); i++ {
 		if tH.opts[i] != opts[i] {
-			t.Fatalf("\n\t(*TCPHeadr).Misconfigure() :FAIL: Options set = %X, want: %X. (Options set, ALL: %v\n========================================", tH.opts[i], opts[i], tH.opts)
+			t.Errorf("\n\t(*TCPHeadr).Misconfigure() :FAIL: Options set = %X, want: %X. (Options set, ALL: %v\n========================================", tH.opts[i], opts[i], tH.opts)
 		}
 	}
 	fmt.Print("\n\n(*TCPHeadr).Misconfigure(): PASS!\n========================================")
@@ -57,7 +57,7 @@ func TestMarshal(t *testing.T) {
 	for byt := range netblob {
 		fmt.Printf("\n\tNetblob[%d]: %d -- BYTEVAL: %d", i, netblob[i], byt)
 		if byt != int(refblob[i]) {
-			t.Fatalf("\n\t(*TCPHeadr).Marshal(): FAIL: Marshalled TCP header value at position %d = %q, want: %v\n========================================", i, byt, int(refblob[i]))
+			t.Errorf("\n\t(*TCPHeadr).Marshal(): FAIL: Marshalled TCP header value at position %d = %q, want: %v\n========================================", i, byt, int(refblob[i]))
 		}
 		i++
 	}
